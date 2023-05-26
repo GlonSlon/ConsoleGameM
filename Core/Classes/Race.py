@@ -1,4 +1,10 @@
-from Constants.Requarement_Bonuses import requarement_bonuses
+import sys, os
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(os.path.dirname(os.path.split(SCRIPT_DIR)[0]))
+
+from Core.Constants.Requarement_Bonuses import requarement_bonuses
+
+
 
 class Race:
     def __init__(self, name:str, **bonuses):
