@@ -52,9 +52,9 @@ class Logger:
         "Добавление нового сообщения в логгер"
         if type(message) in (tuple, list):
             for nEvent in message:
-                self.OutList.append(nEvent + "\n")
+                self.OutList.append(time.ctime()[11:19] + " >> " + nEvent + "\n")
         else:
-            self.OutList.append(message + "\n")
+            self.OutList.append(time.ctime()[11:19] + " >> " + message + "\n")
         return
 
     

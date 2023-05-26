@@ -1,24 +1,25 @@
-import time
-import Core.Game.Logger
+import Core.Game.SaveLoader
+
+from Core.Logger import MainLogger
+
+from Core.Functions.Printing import printf
+
+MainSaveLoader = Core.Game.SaveLoader.SaveLoader("./saves", "save", MainLogger)
+
+data = {1:2, 3:4, "oleg": "pidor"}
+
+MainSaveLoader.Save("test", data)
+
+data2 = MainSaveLoader.Load("test")
+
+print(10, 1, data2)
 
 
 
-MainLogger = Core.Game.Logger.Logger(
-    True, 
-    open(f"Logs/{time.ctime()}.txt".replace(":", " "), "a+").write)
 
-for _ in range(10):
-    time.sleep(0.8)
-    MainLogger(time.ctime(), "Start logger")
+MainLogger("Game Succsesfuly ended")
+MainLogger("Close Logger")
 MainLogger.close()
-
-
-
-
-
-
-
-
 
 
 

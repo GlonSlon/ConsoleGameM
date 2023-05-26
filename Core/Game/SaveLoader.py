@@ -1,5 +1,3 @@
-from Core.Game.Logger import Logger
-
 import pickle
 import os
 
@@ -9,24 +7,28 @@ class SaveLoader:
         Класс предусматривает вывод через логгер, без логгера вывод будет работать в режиме print`a
     """
 
-    def __init__(self, directory=None, fileFormat="txt", isLog=False, LoggerFunc=print):
+    def __init__(self, directory=None, fileFormat="txt", LocalLogger = None):
         "Конструктор класса"
-        self.fileDoesNotExistMsg = "fileDoesNotExistMsg"
-        self.succsesfulCreateMsg = "SuccsesfulCreateMsg"
-        self.succsecfulSaveMsg = "succsecfulSaveMsg"
-        self.succsecfulLoadMsg = "succsecfulLoadMsg"
-        self.wrongDirectoryMsg = "wrongDirectoryMsg"
-        self.brokenFileMsg = "brokenFileMsg"
-        self.noSaveObjMsg = "NoSaveObjMsg"
+        self.file_does_not_exist_msg = "file_does_not_exist_msg"
+        self.creating_saveloader_msg = "Starting SaveLoader"
+        self.succsesful_create_msg = "succsesful_create_msg"
+        self.succsecful_save_msg = "succsecful_save_msg"
+        self.succsecful_load_msg = "succsecful_load_msg"
+        self.wrong_directory_msg = "wrong_directory_msg"
+        self.broken_file_msg = "broken_file_msg"
+        self.no_save_obj_msg = "no_save_obj_msg"
         
-        if isLog:
+        if LocalLogger:
+            self.LocalLogger = LocalLogger
             try:
-                self.LocalLogger = Logger(True, LoggerFunc)
+                self.LocalLogger(self.creating_saveloader_msg)
             except:
-                self.LocalLogger = print
+                while True:
+                    print("Create a logger, fucking bastard!")
+
 
         if not directory:
-            self.LocalLogger(self.wrongDirectoryMsg)
+            self.LocalLogger(self.wrong_directory_msg)
             return None
         self.directory = directory
         
@@ -35,7 +37,6 @@ class SaveLoader:
         else:
             self.fileFormat = "." + fileFormat
 
-        self.isLog = isLog
         lastLoadedData = None
         inWorkSave = None
 
@@ -49,18 +50,15 @@ class SaveLoader:
         try:
             localOpenedFile = open(file, "rb")
         except:
-            if self.isLog:
-                self.LocalLogger(self.fileDoesNotExistMsg)
-                return
+            self.LocalLogger(self.file_does_not_exist_msg)
+            return
         try:
             LoadedData = pickle.load(localOpenedFile)
             localOpenedFile.close()
-            if self.isLog:
-                self.LocalLogger(self.succsecfulLoadMsg)
+            self.LocalLogger(self.succsecful_load_msg)
         except:
-            if self.isLog:
-                self.LocalLogger(self.brokenFileMsg)
-                return
+            self.LocalLogger(self.broken_file_msg)
+            return
         return LoadedData
 
 
@@ -73,11 +71,10 @@ class SaveLoader:
         try:
             pickle.dump(DataToSave, localOpenedFile)
         except:
-            if self.isLog:
-                self.LocalLogger(self.noSaveObjMsg)
+            self.LocalLogger(self.no_save_obj_msg)
+            return
         localOpenedFile.close()
-        if self.isLog:
-            self.LocalLogger(self.succsecfulSaveMsg)
+        self.LocalLogger(self.succsecful_save_msg)
 
 
 
