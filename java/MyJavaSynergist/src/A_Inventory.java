@@ -8,7 +8,7 @@ public abstract class A_Inventory {
     private double max_mass;
     private double max_size;
     
-    private ArrayList<A_Item> objects = new ArrayList<>();
+    private ArrayList<A_Item> objects;
 
     public A_Inventory (double max_mass, double max_size)
     {
@@ -16,6 +16,7 @@ public abstract class A_Inventory {
         this.current_size = 0;
         this.max_mass = max_mass;
         this.max_size = max_size;
+        this.objects = new ArrayList<A_Item>();
     }
 
     public double getMaxMass()
