@@ -1,6 +1,6 @@
 import Core.Game.SaveLoader
 
-from Core.Logger import MainLogger
+import Core.Game.Logger
 
 from Core.Functions.Printing import printf
 
@@ -15,7 +15,7 @@ data2 = MainSaveLoader.Load("test")
 print(10, 1, data2)
 
 
-
+MainLogger = Core.Game.Logger.Logger()
 
 MainLogger("Game Succsesfuly ended")
 MainLogger("Close Logger")

@@ -1,0 +1,6 @@
+21:09:39 >> Start Logger
+21:09:40 >> Starting SaveLoader
+21:09:40 >> succsecful_save_msg
+21:09:40 >> succsecful_load_msg
+21:09:41 >> Game Succsesfuly ended
+21:09:41 >> Close Logger
