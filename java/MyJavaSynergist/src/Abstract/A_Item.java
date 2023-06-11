@@ -1,3 +1,4 @@
+package Abstract;
 public abstract class A_Item {
     private double mass;
     private double size;

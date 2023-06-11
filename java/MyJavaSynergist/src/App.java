@@ -1,36 +1,20 @@
+import Abstract.*;
+import Inventory_System.*;
+import Items.Food;
+
 public class App {
     public static void main(String[] args)
     {
-        A_Inventory Inv1 = new BackPack(10, 10);
-        A_Inventory Inv2 = new BackPack(10, 10);
-        A_Inventory Inv3 = new BackPack(10, 10);
+        A_Inventory Inv1 = new Inventory_Backpack(10, 10, 4);
+        A_Inventory Inv2 = new Inventory_Backpack(10, 10, 3);
+        A_Inventory Inv3 = new Inventory_Backpack(10, 10, 2);
         
-        while(Inv1.append(getMassFood()))
-        {
-            System.out.println("Append __mass food to 1");
-        }
-        while(Inv2.append(getMassFood()))
-        {
-            System.out.println("Append __mass food to 2");
-        }
-        while(Inv3.append(getMassFood()))
-        {
-            System.out.println("Append __mass food to 3");
-        }
+        A_Folder Folder1 = new Folder_Chest(1);
 
+        System.out.println(Folder1.append(Inv1));
+        System.out.println(Folder1.append(Inv2));
+        System.out.println(Folder1.append(Inv3));
 
-        while(Inv1.append(getSizeFood()))
-        {
-            System.out.println("Append size food to 1");
-        }
-        while(Inv2.append(getSizeFood()))
-        {
-            System.out.println("Append size food to 2");
-        }
-        while(Inv3.append(getSizeFood()))
-        {
-            System.out.println("Append size food to 3");
-        }
     }
     public static A_Item getSizeFood()
     {
